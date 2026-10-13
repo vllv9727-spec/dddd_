@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Доктор Айболит — Энциклопедия</title>
+    <style>
+        :root {
+            --primary-color: #2c7be5;
+            --secondary-color: #f0f4f8;
+            --text-color: #333;
+            --border-color: #e1e4e8;
+            --accent-color: #ffd700;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a5fb8 100%);
+            color: white;
+            padding: 40px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 100px;
+            height: 100px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            margin-top: 10px;
+            font-size: 1.1em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: var(--accent-color);
+            color: #000;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-top: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .portrait {
+            background: var(--secondary-color);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: 2px dashed var(--border-color);
+            height: fit-content;
+        }
+        
+        .portrait img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .portrait h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .biography h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #222;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 15px;
+        }
+        
+        .biography p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .facts {
+            background: var(--secondary-color);
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .facts h3 {
+            margin-bottom: 15px;
+            color: #222;
+            display: flex;
+            align-items: center;
+        }
+        
+        .facts h3::before {
+            content: 'ℹ';
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .fact-item {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .fact-item::before {
+            content: '•';
+            color: var(--primary-color);
+            font-size: 1.5em;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+        
+        .fact-item strong {
+            color: #222;
+        }
+        
+        .timeline {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .timeline h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #222;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 15px;
+        }
+        
+        .timeline-item {
+            margin-bottom: 25px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-year {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .references {
+            margin-top: 40px;
+            padding: 25px;
+            background: #fafafa;
+            border-radius: 10px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .references h3 {
+            margin-bottom: 15px;
+            color: #444;
+        }
+        
+        .references ul {
+            list-style-type: none;
+        }
+        
+        .references li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .references li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+        
+        .references a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .references a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="header">
+        <h1>Доктор Айболит</h1>
+        <p>Главный герой сказок Корнея Чуковского, добрый доктор, лечащий зверей и детей</p>
+        <span class="badge">Литературный персонаж</span>
+    </header>
+
+    <div class="content">
+        <div class="info-grid">
+            <div class="portrait">
+                <img src="https://upload.wikimedia.org/wikipedia/ru/thumb/3/3a/Aibolit.jpg/250px-Aibolit.jpg" alt="Доктор Айболит">
+                <h3>Визуальный образ</h3>
+                <p>Высокий, седой, в белом халате и шапочке, неизменный саквояж с красным крестом.</p>
+            </div>
+
+            <div class="biography">
+                <h2>Биография персонажа</h2>
+                <p>Доктор Айболит — воплощение абсолютного добра, самоотверженности и гуманизма. Его имя стало нарицательным в русском языке: так называют добрых врачей, особенно педиатров и ветеринаров. Действие сказок происходит в вымышленном мире, где животные умеют говорить, а география напоминает Африку (река Лимпопо, горы Фернандо-По).</p>
+                <p>Айболит никогда не отказывает в помощи. Он готов отправиться в самое опасное путешествие, преодолеть горы и океаны, чтобы спасти нуждающихся. Его главный антагонист — злой разбойник Бармалей, а верные помощники — собака Авва, обезьяна Чичи, свинка Хрю-Хрю, сова Бумба и утка Кика.</p>
+            </div>
+        </div>
+
+        <div class="facts">
+            <h3>Интересные факты</h3>
+            <div class="fact-item">
+                <strong>Происхождение имени:</strong> Имя образовано из междометия «Ай!» и глагола «болит».
+            </div>
+            <div class="fact-item">
+                <strong>Литературный прототип:</strong> Персонаж основан на докторе Дулиттле из книг английского писателя Хью Лофтинга. Чуковский сделал пересказ книги «История доктора Дулиттла» в 1923 году.[^^1,5]
+            </div>
+            <div class="fact-item">
+                <strong>Реальный прототип:</strong> Сам Корней Чуковский утверждал, что списал образ доктора с жившего в Вильнюсе врача Цемаха Шабада. В 1912 году Чуковский наблюдал, как Шабад бесплатно лечил бедных людей и даже вынул рыболовный крючок из языка у кошки.[^2]
+            </div>
+            <div class="fact-item">
+                <strong>Первое появление:</strong> В стихотворной сказке «Бармалей» (1925 год).[^^3,5]
+            </div>
+            <div class="fact-item">
+                <strong>Культурный след:</strong> В 1966 году вышел знаменитый советский музыкальный фильм «Айболит-66» (реж. Ролан Быков), а в 1984–1985 годах — кукольный мультсериал «Доктор Айболит».
+            </div>
+        </div>
+
+        <div class="timeline">
+            <h2>История создания</h2>
+            <div class="timeline-item">
+                <div class="timeline-year">1912 год</div>
+                <p>Встреча Чуковского с врачом Цемахом Шабадом в Вильнюсе, ставшим прообразом доктора.[^2]</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1923 год</div>
+                <p>Чуковский делает пересказ книги Хью Лофтинга «История доктора Дулиттла».[^^1,5]</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1925 год</div>
+                <p>Первая публикация персонажа в стихотворной сказке «Бармалей».[^^3,5]</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1929 год</div>
+                <p>Выход отдельной стихотворной сказки «Айболит».</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1936 год</div>
+                <p>Издание прозаической повести «Доктор Айболит».[^3]</p>
+            </div>
+        </div>
+
+        <div class="references">
+            <h3>Источники информации</h3>
+            <ul>
+                <li><a href="https://obuchonok.ru/node/4555" target="_blank">История создания персонажа «Доктор Айболит»</a></li>
+                <li><a href="https://24smi.org/person/1747-doktor-aibolit.html" target="_blank">Биография и образ доктора Айболита</a></li>
+                <li><a href="https://school-science.ru/7/10/40788" target="_blank">Доктор Айболит: правда или вымысел</a></li>
+                <li><a href="https://wiki2.org/ru/%D0%90%D0%B9%D0%B1%D0%BE%D0%BB%D0%B8%D1%82" target="_blank">Википедия: Айболит</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
